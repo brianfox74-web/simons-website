@@ -6,6 +6,7 @@
   <title>Tuckley Terrariums — Handcrafted Living Worlds</title>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet" />
   <style>
+
     :root {
       --moss:         #2d4a2d;
       --fern:         #4a7c4e;
@@ -26,33 +27,11 @@
       font-family: 'Jost', sans-serif;
       font-weight: 300;
       overflow-x: hidden;
-      cursor: none;
     }
 
-    /* CURSOR */
-    .cursor {
-      position: fixed;
-      width: 10px; height: 10px;
-      background: var(--sage);
-      border-radius: 50%;
-      pointer-events: none;
-      z-index: 9999;
-      transform: translate(-50%, -50%);
-      transition: width 0.3s, height 0.3s;
-    }
-    .cursor-ring {
-      position: fixed;
-      width: 36px; height: 36px;
-      border: 1px solid var(--sage);
-      border-radius: 50%;
-      pointer-events: none;
-      z-index: 9998;
-      transform: translate(-50%, -50%);
-      opacity: 0.6;
-      transition: width 0.3s, height 0.3s;
-    }
 
-    /* NAV */
+
+    /* ── NAV ── */
     nav {
       position: fixed;
       top: 0; left: 0; right: 0;
@@ -72,7 +51,11 @@
       color: var(--mist);
       text-decoration: none;
     }
-    .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+    .nav-links {
+      display: flex;
+      gap: 2.5rem;
+      list-style: none;
+    }
     .nav-links a {
       font-size: 0.75rem;
       letter-spacing: 0.18em;
@@ -83,7 +66,7 @@
     }
     .nav-links a:hover { color: var(--cream); }
 
-    /* HERO */
+    /* ── HERO ── */
     .hero {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -94,8 +77,6 @@
       flex-direction: column;
       justify-content: center;
       padding: 10rem 4rem 6rem 6rem;
-      position: relative;
-      z-index: 2;
     }
     .hero-right {
       position: relative;
@@ -110,10 +91,10 @@
       opacity: 0;
       animation: fadeIn 1.2s 0.6s forwards;
     }
-    .hero-right-overlay {
+    .hero-overlay {
       position: absolute;
       inset: 0;
-      background: linear-gradient(to right, rgba(58,46,30,0.4) 0%, transparent 60%);
+      background: linear-gradient(to right, rgba(58,46,30,0.4), transparent);
       pointer-events: none;
       z-index: 1;
     }
@@ -154,7 +135,7 @@
       animation: fadeUp 0.8s 0.9s forwards;
     }
 
-    /* BUTTONS */
+    /* ── BUTTONS ── */
     .btn-primary {
       padding: 1rem 2.5rem;
       background: var(--fern);
@@ -166,7 +147,11 @@
       border: 1px solid var(--fern);
       transition: background 0.3s, color 0.3s, border-color 0.3s;
     }
-    .btn-primary:hover { background: transparent; border-color: var(--sage); color: var(--sage); }
+    .btn-primary:hover {
+      background: transparent;
+      border-color: var(--sage);
+      color: var(--sage);
+    }
     .btn-ghost {
       font-size: 0.75rem;
       letter-spacing: 0.2em;
@@ -181,7 +166,7 @@
     .btn-ghost::after { content: '→'; }
     .btn-ghost:hover { color: var(--cream); gap: 1rem; }
 
-    /* MARQUEE */
+    /* ── MARQUEE ── */
     .marquee-section {
       padding: 1.5rem 0;
       border-top: 1px solid rgba(138,171,126,0.15);
@@ -205,60 +190,116 @@
     }
     .marquee-dot { color: var(--fern); margin: 0 1rem; }
 
-    /* ABOUT */
-    .about {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      padding: 8rem 6rem;
+    /* ── ABOUT BANNER ── */
+    .about-banner {
       position: relative;
+      height: 80vh;
+      min-height: 500px;
+      overflow: hidden;
     }
-    .about::before {
-      content: '';
+    .about-banner img {
       position: absolute;
-      top: 4rem; left: 50%;
-      width: 1px; height: calc(100% - 8rem);
-      background: var(--glass-border);
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
     }
-    .about-left { padding-right: 5rem; }
-    .about-right { padding-left: 5rem; padding-top: 4rem; }
+    .about-banner-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to right,
+        rgba(58,46,30,0.92) 0%,
+        rgba(58,46,30,0.75) 40%,
+        rgba(58,46,30,0.3) 100%
+      );
+    }
+    .about-banner-content {
+      position: relative;
+      z-index: 2;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 6rem;
+      max-width: 680px;
+    }
+    .about-banner-content .section-label {
+      margin-bottom: 1.5rem;
+    }
+    .about-banner-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.5rem, 4vw, 3.8rem);
+      font-weight: 300;
+      line-height: 1.1;
+      color: var(--cream);
+      margin-bottom: 2rem;
+    }
+    .about-banner-title em { font-style: italic; color: var(--sage); }
+    .about-banner-text {
+      font-size: 1rem;
+      line-height: 1.9;
+      color: var(--mist);
+      margin-bottom: 1.2rem;
+      max-width: 520px;
+    }
+    .about-banner-stats {
+      display: flex;
+      gap: 3rem;
+      margin-top: 2.5rem;
+      padding-top: 2.5rem;
+      border-top: 1px solid var(--glass-border);
+    }
+    .about-stat { }
+    .about-stat-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.5rem;
+      font-weight: 300;
+      color: var(--sage);
+      line-height: 1;
+    }
+    .about-stat-label {
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--mist);
+      margin-top: 0.3rem;
+    }
+
+    /* ── SECTION LABEL ── */
     .section-label {
       font-size: 0.65rem;
       letter-spacing: 0.35em;
       text-transform: uppercase;
       color: var(--fern);
       margin-bottom: 1.5rem;
+      display: block;
     }
-    .about-title {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(2.2rem, 3.5vw, 3rem);
-      font-weight: 300;
-      line-height: 1.2;
-      color: var(--cream);
-      margin-bottom: 2rem;
-    }
-    .about-title em { font-style: italic; color: var(--sage); }
-    .about-text { font-size: 0.95rem; line-height: 1.9; color: var(--mist); margin-bottom: 1.5rem; }
-    .stat-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-top: 3rem; }
-    .stat { border-left: 2px solid var(--fern); padding-left: 1.2rem; }
-    .stat-num {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 2.8rem;
-      font-weight: 300;
-      color: var(--sage);
-      line-height: 1;
-    }
-    .stat-label { font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--mist); margin-top: 0.3rem; }
 
-    /* SERVICES */
-    .services { padding: 6rem 6rem 8rem; background: rgba(45,74,45,0.08); }
-    .services-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 4rem; }
+    /* ── SERVICES ── */
+    .services {
+      padding: 6rem 6rem 8rem;
+      background: rgba(45,74,45,0.08);
+    }
+    .services-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-bottom: 4rem;
+    }
     .services-title {
       font-family: 'Cormorant Garamond', serif;
       font-size: clamp(2rem, 3vw, 2.8rem);
       font-weight: 300;
       color: var(--cream);
     }
-    .services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5px; background: var(--glass-border); }
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5px;
+      background: var(--glass-border);
+    }
     .service-card {
       background: var(--bark);
       padding: 3rem 2.5rem;
@@ -279,15 +320,39 @@
     .service-card:hover { background: rgba(74,124,78,0.08); }
     .service-card:hover::before { transform: scaleX(1); }
     .service-icon { font-size: 2rem; margin-bottom: 1.5rem; display: block; }
-    .service-name { font-family: 'Cormorant Garamond', serif; font-size: 1.5rem; font-weight: 400; color: var(--cream); margin-bottom: 1rem; }
+    .service-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.5rem;
+      font-weight: 400;
+      color: var(--cream);
+      margin-bottom: 1rem;
+    }
     .service-desc { font-size: 0.88rem; line-height: 1.8; color: var(--mist); }
-    .service-num { position: absolute; top: 2rem; right: 2.5rem; font-family: 'Cormorant Garamond', serif; font-size: 4rem; font-weight: 300; color: rgba(138,171,126,0.06); line-height: 1; }
+    .service-num {
+      position: absolute;
+      top: 2rem; right: 2.5rem;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 4rem;
+      font-weight: 300;
+      color: rgba(138,171,126,0.06);
+      line-height: 1;
+    }
 
-    /* PROCESS */
+    /* ── PROCESS ── */
     .process { padding: 8rem 6rem; }
     .process-header { text-align: center; margin-bottom: 5rem; }
-    .process-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(2rem, 3vw, 2.8rem); font-weight: 300; color: var(--cream); margin-top: 1rem; }
-    .process-steps { display: grid; grid-template-columns: repeat(4, 1fr); position: relative; }
+    .process-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2rem, 3vw, 2.8rem);
+      font-weight: 300;
+      color: var(--cream);
+      margin-top: 1rem;
+    }
+    .process-steps {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      position: relative;
+    }
     .process-steps::before {
       content: '';
       position: absolute;
@@ -311,27 +376,51 @@
       position: relative;
       z-index: 1;
     }
-    .step-title { font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; color: var(--cream); margin-bottom: 0.8rem; }
+    .step-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.3rem;
+      color: var(--cream);
+      margin-bottom: 0.8rem;
+    }
     .step-desc { font-size: 0.82rem; line-height: 1.7; color: var(--mist); }
 
-    /* CONTACT */
+    /* ── CONTACT ── */
     .contact {
       padding: 8rem 6rem;
-      background: linear-gradient(180deg, transparent 0%, rgba(45,74,45,0.15) 100%);
+      background: linear-gradient(180deg, transparent, rgba(45,74,45,0.15));
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 6rem;
       align-items: center;
     }
-    .contact-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(2.5rem, 4vw, 3.5rem); font-weight: 300; color: var(--cream); line-height: 1.1; margin-bottom: 1.5rem; }
+    .contact-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.5rem, 4vw, 3.5rem);
+      font-weight: 300;
+      color: var(--cream);
+      line-height: 1.1;
+      margin-bottom: 1.5rem;
+    }
     .contact-title em { font-style: italic; color: var(--sage); }
     .contact-text { font-size: 0.95rem; line-height: 1.8; color: var(--mist); margin-bottom: 2.5rem; }
-    .contact-detail { display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem; font-size: 0.9rem; color: var(--sage); }
+    .contact-detail {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 1rem;
+      font-size: 0.9rem;
+      color: var(--sage);
+    }
     .contact-detail span { color: var(--mist); }
     .contact-form { display: flex; flex-direction: column; gap: 1.2rem; }
     .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem; }
     .form-group { display: flex; flex-direction: column; gap: 0.5rem; }
-    .form-label { font-size: 0.65rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--sage); }
+    .form-label {
+      font-size: 0.65rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--sage);
+    }
     .form-input, .form-textarea {
       background: var(--glass);
       border: 1px solid var(--glass-border);
@@ -355,13 +444,13 @@
       font-size: 0.75rem;
       letter-spacing: 0.2em;
       text-transform: uppercase;
-      cursor: none;
+      cursor: pointer;
       align-self: flex-start;
       transition: background 0.3s, color 0.3s, border-color 0.3s;
     }
     .btn-submit:hover { background: transparent; border-color: var(--sage); color: var(--sage); }
 
-    /* FOOTER */
+    /* ── FOOTER ── */
     footer {
       padding: 3rem 6rem;
       border-top: 1px solid var(--glass-border);
@@ -369,13 +458,25 @@
       justify-content: space-between;
       align-items: center;
     }
-    .footer-logo { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; letter-spacing: 0.15em; color: var(--mist); }
+    .footer-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.1rem;
+      letter-spacing: 0.15em;
+      color: var(--mist);
+    }
     .footer-copy { font-size: 0.72rem; color: rgba(212,228,204,0.4); letter-spacing: 0.1em; }
     .footer-links { display: flex; gap: 2rem; }
-    .footer-links a { font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--sage); text-decoration: none; transition: color 0.3s; }
+    .footer-links a {
+      font-size: 0.7rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--sage);
+      text-decoration: none;
+      transition: color 0.3s;
+    }
     .footer-links a:hover { color: var(--cream); }
 
-    /* ANIMATIONS */
+    /* ── ANIMATIONS ── */
     @keyframes fadeUp {
       from { opacity: 0; transform: translateY(20px); }
       to   { opacity: 1; transform: translateY(0); }
@@ -389,14 +490,19 @@
       to   { transform: translateX(-50%); }
     }
 
-    /* SCROLL REVEAL */
-    .reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.7s ease, transform 0.7s ease; }
-    .reveal.visible { opacity: 1; transform: translateY(0); }
+    /* ── SCROLL REVEAL ── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
 
-    /* MOBILE */
+    /* ── MOBILE ── */
     @media (max-width: 900px) {
-      body { cursor: auto; }
-      .cursor, .cursor-ring { display: none; }
       nav { padding: 1.5rem 2rem; }
       .nav-links { display: none; }
 
@@ -419,9 +525,7 @@
         opacity: 1;
         animation: none;
       }
-      .hero-right-overlay {
-        background: rgba(58,46,30,0.65);
-      }
+      .hero-overlay { background: rgba(58,46,30,0.65); }
       .hero-left {
         position: relative;
         z-index: 2;
@@ -429,28 +533,29 @@
         min-height: 100vh;
       }
 
-      .about { grid-template-columns: 1fr; padding: 4rem 2rem; }
-      .about::before { display: none; }
-      .about-left { padding-right: 0; margin-bottom: 3rem; }
-      .about-right { padding-left: 0; padding-top: 0; }
+      .about-banner { height: auto; min-height: unset; }
+      .about-banner-content { padding: 4rem 2rem; max-width: 100%; }
+      .about-banner-stats { flex-wrap: wrap; gap: 2rem; }
+
       .services { padding: 4rem 2rem; }
       .services-header { flex-direction: column; align-items: flex-start; gap: 1rem; }
       .services-grid { grid-template-columns: 1fr; }
+
       .process { padding: 4rem 2rem; }
       .process-steps { grid-template-columns: 1fr 1fr; gap: 3rem; }
       .process-steps::before { display: none; }
+
       .contact { grid-template-columns: 1fr; gap: 3rem; padding: 4rem 2rem; }
       .form-row { grid-template-columns: 1fr; }
+
       footer { padding: 2rem; flex-direction: column; gap: 1rem; text-align: center; }
     }
+
   </style>
 </head>
 <body>
 
-  <div class="cursor" id="cursor"></div>
-  <div class="cursor-ring" id="cursorRing"></div>
-
-  <!-- NAV -->
+<!-- NAV -->
   <nav>
     <a href="#" class="nav-logo">Tuckley Terrariums</a>
     <ul class="nav-links">
@@ -473,7 +578,7 @@
       </div>
     </div>
     <div class="hero-right">
-      <div class="hero-right-overlay"></div>
+      <div class="hero-overlay"></div>
       <img src="hero.png" alt="A handcrafted Tuckley Terrarium" />
     </div>
   </section>
@@ -496,27 +601,33 @@
     </div>
   </div>
 
-  <!-- ABOUT -->
-  <section class="about" id="about">
-    <div class="about-left reveal">
-      <p class="section-label">Our Story</p>
-      <h2 class="about-title">Crafted by hand,<br><em>grown with love</em></h2>
-      <p class="about-text">At Tuckley Terrariums, every piece begins with a vision — a miniature world waiting to be brought to life. We hand-select each vessel, layer substrates with precision, and choose plants that will thrive together in harmony.</p>
-      <p class="about-text">Our terrariums aren't just décor. They're living, breathing ecosystems that evolve over time — a constant, gentle reminder of nature's quiet beauty.</p>
-      <div class="stat-grid">
-        <div class="stat"><div class="stat-num">100%</div><div class="stat-label">Handcrafted</div></div>
-        <div class="stat"><div class="stat-num">∞</div><div class="stat-label">Unique Designs</div></div>
-        <div class="stat"><div class="stat-num">5★</div><div class="stat-label">Customer Rated</div></div>
-        <div class="stat"><div class="stat-num">UK</div><div class="stat-label">Based &amp; Shipped</div></div>
+  <!-- ABOUT BANNER -->
+  <section class="about-banner" id="about">
+    <img src="about.png" alt="Tuckley Terrariums collection" />
+    <div class="about-banner-overlay"></div>
+    <div class="about-banner-content reveal">
+      <span class="section-label">Our Story</span>
+      <h2 class="about-banner-title">Crafted by hand,<br><em>grown with love</em></h2>
+      <p class="about-banner-text">At Tuckley Terrariums, every piece begins with a vision — a miniature world waiting to be brought to life. We hand-select each vessel, layer substrates with precision, and choose plants that will thrive together in harmony.</p>
+      <p class="about-banner-text">No two terrariums are ever the same. That's not a limitation — it's the whole point.</p>
+      <div class="about-banner-stats">
+        <div class="about-stat">
+          <div class="about-stat-num">100%</div>
+          <div class="about-stat-label">Handcrafted</div>
+        </div>
+        <div class="about-stat">
+          <div class="about-stat-num">∞</div>
+          <div class="about-stat-label">Unique Designs</div>
+        </div>
+        <div class="about-stat">
+          <div class="about-stat-num">5★</div>
+          <div class="about-stat-label">Customer Rated</div>
+        </div>
+        <div class="about-stat">
+          <div class="about-stat-num">UK</div>
+          <div class="about-stat-label">Based &amp; Shipped</div>
+        </div>
       </div>
-    </div>
-    <div class="about-right reveal">
-      <p class="section-label">Why Tuckley?</p>
-      <p class="about-text">We believe in slow making. Each terrarium takes time — sourcing the right glass, choosing plants by hand, and arranging them until the composition feels just right.</p>
-      <p class="about-text">Whether you're looking for a statement piece for your home, a heartfelt gift, or a bespoke commission, we bring the same level of care and craft to every single build.</p>
-      <p class="about-text">No two terrariums are ever the same. That's not a limitation — it's the whole point.</p>
-      <br>
-      <a href="#contact" class="btn-ghost">Get in touch</a>
     </div>
   </section>
 
@@ -524,7 +635,7 @@
   <section class="services" id="services">
     <div class="services-header reveal">
       <div>
-        <p class="section-label">What We Offer</p>
+        <span class="section-label">What We Offer</span>
         <h2 class="services-title">Our Collections</h2>
       </div>
       <a href="#contact" class="btn-ghost">Enquire about any piece</a>
@@ -554,7 +665,7 @@
   <!-- PROCESS -->
   <section class="process" id="process">
     <div class="process-header reveal">
-      <p class="section-label">How It Works</p>
+      <span class="section-label">How It Works</span>
       <h2 class="process-title">From idea to living artwork</h2>
     </div>
     <div class="process-steps">
@@ -584,7 +695,7 @@
   <!-- CONTACT -->
   <section class="contact" id="contact">
     <div class="contact-left reveal">
-      <p class="section-label">Get In Touch</p>
+      <span class="section-label">Get In Touch</span>
       <h2 class="contact-title">Let's build<br>something <em>beautiful</em></h2>
       <p class="contact-text">Whether you have a specific piece in mind or just want to explore what's possible, we'd love to hear from you. No enquiry is too small.</p>
       <div class="contact-detail">✉ <span>hello@tuckleyterrariums.co.uk</span></div>
@@ -627,41 +738,6 @@
   </footer>
 
   <script>
-    // Custom cursor
-    var cursor = document.getElementById('cursor');
-    var ring   = document.getElementById('cursorRing');
-    var mx = 0, my = 0, rx = 0, ry = 0;
-
-    document.addEventListener('mousemove', function(e) {
-      mx = e.clientX;
-      my = e.clientY;
-      cursor.style.left = mx + 'px';
-      cursor.style.top  = my + 'px';
-    });
-
-    function animRing() {
-      rx += (mx - rx) * 0.12;
-      ry += (my - ry) * 0.12;
-      ring.style.left = rx + 'px';
-      ring.style.top  = ry + 'px';
-      requestAnimationFrame(animRing);
-    }
-    animRing();
-
-    document.querySelectorAll('a, button, .service-card').forEach(function(el) {
-      el.addEventListener('mouseenter', function() {
-        cursor.style.width  = '6px';
-        cursor.style.height = '6px';
-        ring.style.width    = '56px';
-        ring.style.height   = '56px';
-      });
-      el.addEventListener('mouseleave', function() {
-        cursor.style.width  = '10px';
-        cursor.style.height = '10px';
-        ring.style.width    = '36px';
-        ring.style.height   = '36px';
-      });
-    });
 
     // Scroll reveal
     var reveals = document.querySelectorAll('.reveal');
