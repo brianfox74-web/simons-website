@@ -550,23 +550,23 @@
       nav { padding: 1.5rem 2rem; }
       .nav-links { display: none; }
       .hero {
-        grid-template-columns: 1fr;
+        display: block;
         position: relative;
         min-height: 100vh;
-      }
-      .hero-left {
-        padding: 8rem 2rem 5rem;
-        position: relative;
-        z-index: 2;
-        background: linear-gradient(to bottom, rgba(58,46,30,0.75) 0%, rgba(58,46,30,0.55) 100%);
       }
       .hero-right {
         display: block;
         position: absolute;
         inset: 0;
         z-index: 0;
-        min-height: 100%;
         pointer-events: none;
+      }
+      .hero-left {
+        position: relative;
+        z-index: 2;
+        padding: 8rem 2rem 5rem;
+        min-height: 100vh;
+        background: linear-gradient(to bottom, rgba(58,46,30,0.72) 0%, rgba(58,46,30,0.50) 100%);
       }
       .hero-image-overlay { background: none; }
       .about, .contact { grid-template-columns: 1fr; gap: 3rem; }
