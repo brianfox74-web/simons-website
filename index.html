@@ -184,140 +184,21 @@
       position: relative;
       overflow: hidden;
     }
-    /* Terrarium illustration — CSS art */
-    .terrarium-wrap {
+    .hero-image {
       position: absolute;
       inset: 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
       opacity: 0;
       animation: fadeIn 1.2s 0.6s forwards;
     }
-    .terrarium-bg {
+    .hero-image-overlay {
       position: absolute;
       inset: 0;
-      background: radial-gradient(ellipse at 60% 50%, rgba(74,124,78,0.18) 0%, transparent 70%);
-    }
-    .glass-vessel {
-      position: relative;
-      width: 320px;
-      height: 420px;
-    }
-    /* Glass body */
-    .glass-vessel::before {
-      content: '';
-      position: absolute;
-      bottom: 0; left: 50%;
-      transform: translateX(-50%);
-      width: 260px; height: 360px;
-      background: linear-gradient(160deg,
-        rgba(138,171,126,0.12) 0%,
-        rgba(74,124,78,0.08) 40%,
-        rgba(45,74,45,0.15) 100%
-      );
-      border: 1px solid var(--glass-border);
-      clip-path: polygon(15% 0%, 85% 0%, 100% 100%, 0% 100%);
-      backdrop-filter: blur(2px);
-    }
-    /* Glass lid */
-    .glass-vessel::after {
-      content: '';
-      position: absolute;
-      top: 0; left: 50%;
-      transform: translateX(-50%);
-      width: 120px; height: 70px;
-      background: linear-gradient(180deg,
-        rgba(138,171,126,0.15) 0%,
-        rgba(74,124,78,0.05) 100%
-      );
-      border: 1px solid var(--glass-border);
-      clip-path: polygon(20% 0%, 80% 0%, 100% 100%, 0% 100%);
-    }
-    .plant-layer {
-      position: absolute;
-      bottom: 20px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 220px;
-      height: 260px;
-    }
-    /* Moss base */
-    .moss-base {
-      position: absolute;
-      bottom: 0; left: 10px; right: 10px;
-      height: 40px;
-      background: radial-gradient(ellipse, var(--moss) 0%, #1a2e1a 100%);
-      border-radius: 50%;
-    }
-    /* Plants as CSS shapes */
-    .plant { position: absolute; }
-    .plant-1 {
-      bottom: 28px; left: 30px;
-      width: 0; height: 0;
-      border-left: 22px solid transparent;
-      border-right: 22px solid transparent;
-      border-bottom: 80px solid #3a6b3a;
-      filter: drop-shadow(0 0 8px rgba(74,124,78,0.4));
-    }
-    .plant-1::before {
-      content: '';
-      position: absolute;
-      top: 20px; left: -16px;
-      width: 0; height: 0;
-      border-left: 16px solid transparent;
-      border-right: 16px solid transparent;
-      border-bottom: 55px solid #4a7c4e;
-    }
-    .plant-2 {
-      bottom: 28px; right: 20px;
-      width: 0; height: 0;
-      border-left: 18px solid transparent;
-      border-right: 18px solid transparent;
-      border-bottom: 60px solid #2d4a2d;
-      filter: drop-shadow(0 0 6px rgba(45,74,45,0.5));
-    }
-    .plant-2::before {
-      content: '';
-      position: absolute;
-      top: 15px; left: -13px;
-      width: 0; height: 0;
-      border-left: 13px solid transparent;
-      border-right: 13px solid transparent;
-      border-bottom: 42px solid #3a6b3a;
-    }
-    .plant-3 {
-      bottom: 32px;
-      left: 50%; transform: translateX(-50%);
-      width: 0; height: 0;
-      border-left: 28px solid transparent;
-      border-right: 28px solid transparent;
-      border-bottom: 100px solid #4a7c4e;
-      filter: drop-shadow(0 0 12px rgba(74,124,78,0.6));
-    }
-    .plant-3::before {
-      content: '';
-      position: absolute;
-      top: 25px; left: -20px;
-      width: 0; height: 0;
-      border-left: 20px solid transparent;
-      border-right: 20px solid transparent;
-      border-bottom: 70px solid #5a9c5e;
-    }
-    /* Floating particles */
-    .particle {
-      position: absolute;
-      width: 3px; height: 3px;
-      background: var(--sage);
-      border-radius: 50%;
-      animation: float linear infinite;
-      opacity: 0;
-    }
-    @keyframes float {
-      0%   { transform: translateY(0) translateX(0); opacity: 0; }
-      20%  { opacity: 0.6; }
-      80%  { opacity: 0.3; }
-      100% { transform: translateY(-120px) translateX(20px); opacity: 0; }
+      background: linear-gradient(to right, rgba(58,46,30,0.5) 0%, transparent 60%);
+      z-index: 1;
     }
 
     /* MARQUEE */
@@ -713,23 +594,8 @@
       </div>
     </div>
     <div class="hero-right">
-      <div class="terrarium-wrap">
-        <div class="terrarium-bg"></div>
-        <div class="glass-vessel">
-          <div class="plant-layer">
-            <div class="moss-base"></div>
-            <div class="plant plant-1"></div>
-            <div class="plant plant-2"></div>
-            <div class="plant plant-3"></div>
-          </div>
-          <!-- Particles -->
-          <div class="particle" style="left:55%;bottom:60%;animation-duration:4s;animation-delay:0s;"></div>
-          <div class="particle" style="left:45%;bottom:50%;animation-duration:5s;animation-delay:1s;"></div>
-          <div class="particle" style="left:60%;bottom:55%;animation-duration:6s;animation-delay:2s;"></div>
-          <div class="particle" style="left:50%;bottom:65%;animation-duration:4.5s;animation-delay:0.5s;"></div>
-          <div class="particle" style="left:40%;bottom:60%;animation-duration:5.5s;animation-delay:1.5s;"></div>
-        </div>
-      </div>
+      <div class="hero-image-overlay"></div>
+      <img src="hero.png" alt="Tuckley Terrarium" class="hero-image" />
     </div>
   </section>
 
@@ -855,7 +721,7 @@
       <p class="section-label">Get In Touch</p>
       <h2 class="contact-title">Let's build<br>something <em>beautiful</em></h2>
       <p class="contact-text">Whether you have a specific piece in mind or just want to explore what's possible, we'd love to hear from you. No enquiry is too small.</p>
-      <div class="contact-detail">✉ <span>hello@tuckleyterrariums.co.uk</span></div>
+      <div class="contact-detail">✉ <span><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="19717c757576596d6c7a72757c606d7c6b6b786b706c746a377a76376c72">[email&#160;protected]</a></span></div>
       <div class="contact-detail">📍 <span>United Kingdom</span></div>
     </div>
     <div class="contact-right reveal">
@@ -894,7 +760,7 @@
     </div>
   </footer>
 
-  <script>
+  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
     // Custom cursor
     const cursor = document.getElementById('cursor');
     const ring = document.getElementById('cursorRing');
@@ -930,11 +796,4 @@
     // Form
     function handleSubmit(e) {
       e.preventDefault();
-      const btn = e.target.querySelector('.btn-submit');
-      btn.textContent = 'Sent ✓';
-      btn.style.background = 'var(--moss)';
-      setTimeout(() => { btn.textContent = 'Send Enquiry'; btn.style.background = ''; }, 3000);
-    }
-  </script>
-</body>
-</html>
+      const btn = e.target.
