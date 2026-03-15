@@ -183,6 +183,7 @@
     .hero-right {
       position: relative;
       overflow: hidden;
+      min-height: 100vh;
     }
     .hero-image {
       position: absolute;
@@ -199,6 +200,7 @@
       inset: 0;
       background: linear-gradient(to right, rgba(58,46,30,0.5) 0%, transparent 60%);
       z-index: 1;
+      pointer-events: none;
     }
 
     /* MARQUEE */
@@ -547,9 +549,26 @@
     @media (max-width: 900px) {
       nav { padding: 1.5rem 2rem; }
       .nav-links { display: none; }
-      .hero { grid-template-columns: 1fr; }
-      .hero-left { padding: 8rem 2rem 4rem; }
-      .hero-right { display: none; }
+      .hero {
+        grid-template-columns: 1fr;
+        position: relative;
+        min-height: 100vh;
+      }
+      .hero-left {
+        padding: 8rem 2rem 5rem;
+        position: relative;
+        z-index: 2;
+        background: linear-gradient(to bottom, rgba(58,46,30,0.75) 0%, rgba(58,46,30,0.55) 100%);
+      }
+      .hero-right {
+        display: block;
+        position: absolute;
+        inset: 0;
+        z-index: 0;
+        min-height: 100%;
+        pointer-events: none;
+      }
+      .hero-image-overlay { background: none; }
       .about, .contact { grid-template-columns: 1fr; gap: 3rem; }
       .about { padding: 5rem 2rem; }
       .about::before { display: none; }
